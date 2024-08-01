@@ -16,24 +16,30 @@ SELECT * FROM Product
 
 2. Ecrire la requête SQL qui permet d'ajouter un produit au panier de l'utilisateur.
 ```sql
-SELECT Product.id FROM Product INNER JOIN Cart WHERE Product.id = Cart.product_id;
+INSERT INTO Cart (product_id,user_id)
 ```
 
 3. Ecrire la requête SQL qui permet de valider une commande pour qu'elle parte en salle.
 ```sql
-
+UPDATE Commande
+SET status ="validée !",date_validated = NOW()
+WHERE id = Product.id
 ```
 
 4. Un nouveau burger est arrivé : le DoubleBigMassi. Ecrivez la requête SQL qui permet d'ajouter ce magnifique *burger* à la carte.
 ```sql
-# Ecrivez la requête ici ...
-
+INSERT INTO Product (name, price, quantity,description)
+ VALUES
+('DoubleBigMassi','6.9','69','un BIG BURGER')
 ```
 
 5. Ecrire la requête SQL qui permet de récupérer tout les produits d'une commande en fonction de l'id d'un utilisateur.
 ```sql
-# Ecrivez la requête ici ...
-
+SELECT Product.id as Cart(product_id), Product.name, Product.price, Product.quantity
+FROM commande.id
+JOIN CommandeProduct ON Commande_id = Product_id
+JOIN Product ON Product.id = product_id
+WHERE Commande.user_id
 ```
 
 ## Partie 2 - Projet
