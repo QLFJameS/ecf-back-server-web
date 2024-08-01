@@ -45,3 +45,25 @@ ProductRoute.post('/new', async (req, res) => {
       console.log(error);
     }
   });
+
+  ProductRoute.delete("/:title", async (req, res) => {
+    try {
+        const title = req.params.title;
+
+        const nbDeletedProducts = await Product.destroy({
+            where: {
+
+                id: isNaN(Number(title)) ? 0 : title,//operateur ternaire => const r == conditions? valretour1 : valretour2
+            }
+        });
+
+        if (nbDeletedProducts == 0) {
+            res.status(404).json("Aucun produit trouvé");
+        } else {
+            res.status(200).json("Tous les produits contenant le mot ou l'id suivant ont été supprimés : " + title);
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+});
